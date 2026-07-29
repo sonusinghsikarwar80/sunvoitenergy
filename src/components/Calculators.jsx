@@ -280,10 +280,10 @@ export default function Calculators() {
         </div>
 
         {/* Tab Selection */}
-        <div className="flex justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
           <button 
             onClick={() => setActiveTab('savings')}
-            className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 hover:scale-102 ${
+            className={`px-4 sm:px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 hover:scale-102 ${
               activeTab === 'savings'
                 ? 'bg-solar-primary text-white shadow-md shadow-solar-primary/20'
                 : 'bg-white dark:bg-gray-800 text-solar-textDark dark:text-gray-300 border border-gray-200 dark:border-gray-700'
@@ -294,7 +294,7 @@ export default function Calculators() {
           </button>
           <button 
             onClick={() => setActiveTab('emi')}
-            className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 hover:scale-102 ${
+            className={`px-4 sm:px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 hover:scale-102 ${
               activeTab === 'emi'
                 ? 'bg-solar-primary text-white shadow-md shadow-solar-primary/20'
                 : 'bg-white dark:bg-gray-800 text-solar-textDark dark:text-gray-300 border border-gray-200 dark:border-gray-700'

@@ -122,10 +122,10 @@ export default function FAQAndContact() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Info contacts panel */}
-            <div className="sm:col-span-4 space-y-6 text-xs sm:text-sm">
+            <div className="lg:col-span-4 space-y-6 text-xs sm:text-sm">
               <div className="flex gap-3">
                 <div className="p-2.5 bg-solar-primary/10 rounded-full text-solar-primary flex-shrink-0">
                   <Phone size={16} />
@@ -168,7 +168,7 @@ export default function FAQAndContact() {
             </div>
 
             {/* Main Form panel */}
-            <div className="sm:col-span-8 bg-white dark:bg-gray-850 p-6 sm:p-8 rounded-3xl border shadow-xl w-full">
+            <div className="lg:col-span-8 bg-white dark:bg-gray-850 p-6 sm:p-8 rounded-3xl border shadow-xl w-full">
               {!formSubmitted ? (
                 <form onSubmit={handleFormSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 gap-4">

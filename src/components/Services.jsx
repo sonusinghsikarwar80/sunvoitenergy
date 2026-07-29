@@ -400,18 +400,18 @@ export default function Services() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <button onClick={() => setSelectedService(null)} className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full p-2 transition-all"><X size={20} /></button>
                 <div className={`absolute top-4 left-4 ${srv.badge.color} text-white text-xs font-bold px-3 py-1.5 rounded-full`}>{srv.badge.text}</div>
-                <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+                <div className="absolute bottom-4 left-5 right-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-left">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-solar-primary to-solar-secondary flex items-center justify-center text-white"><Icon size={16} /></div>
-                      <span className="text-white/70 text-xs uppercase tracking-wider">{srv.category}</span>
+                      <span className="text-white/70 text-[10px] sm:text-xs uppercase tracking-wider">{srv.category}</span>
                     </div>
-                    <h2 className="text-white text-2xl font-extrabold" style={{letterSpacing:'-0.03em'}}>{srv.title}</h2>
+                    <h2 className="text-white text-lg sm:text-2xl font-extrabold" style={{letterSpacing:'-0.03em'}}>{srv.title}</h2>
                   </div>
-                  <div className="text-right">
-                    <div className="text-white/60 text-[10px] uppercase">Starting From</div>
-                    <div className="text-white text-xl font-extrabold">{srv.price}</div>
-                    {srv.emi && <div className="text-solar-yellow text-[11px] font-semibold">{srv.emi} EMI</div>}
+                  <div className="text-left sm:text-right flex-shrink-0">
+                    <div className="text-white/60 text-[9px] sm:text-[10px] uppercase">Starting From</div>
+                    <div className="text-white text-base sm:text-xl font-extrabold">{srv.price}</div>
+                    {srv.emi && <div className="text-solar-yellow text-[10px] sm:text-[11px] font-semibold">{srv.emi} EMI</div>}
                   </div>
                 </div>
               </div>

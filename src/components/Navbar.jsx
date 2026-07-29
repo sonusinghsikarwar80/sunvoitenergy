@@ -125,22 +125,22 @@ export default function Navbar() {
         </div>
 
         {/* ── Right Side Icons ── */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
 
           {/* Search */}
           <button onClick={() => setShowSearch(!showSearch)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
             <Search size={19} className="text-solar-textDark dark:text-gray-200" />
           </button>
 
-          {/* Theme Toggle */}
-          <button onClick={toggleTheme} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
+          {/* Theme Toggle (Desktop only, hidden < sm) */}
+          <button onClick={toggleTheme} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:block">
             {theme === 'light'
               ? <Moon size={19} className="text-solar-textDark" />
               : <Sun size={19} className="text-yellow-400" />}
           </button>
 
-          {/* Language */}
-          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center gap-1">
+          {/* Language (Desktop only, hidden < sm) */}
+          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:flex items-center gap-1">
             <Globe size={17} className="text-solar-textDark dark:text-gray-200" />
             <span className="uppercase text-xs font-semibold text-solar-textDark dark:text-gray-200">{language}</span>
           </button>
@@ -222,7 +222,7 @@ export default function Navbar() {
 
       {/* ── Mobile Drawer Menu ── */}
       {mobileOpen && (
-        <div className="xl:hidden absolute top-full left-0 w-full glass-premium shadow-2xl border-t dark:border-gray-800 py-6 px-6 flex flex-col gap-1 animate-slide-down">
+        <div className="xl:hidden absolute top-full left-0 w-full glass-premium shadow-2xl border-t dark:border-gray-800 py-6 px-6 flex flex-col gap-1 animate-slide-down max-h-[85vh] overflow-y-auto">
           {navLinks.map((link) => (
             <button
               key={link.path}
@@ -246,6 +246,24 @@ export default function Navbar() {
           >
             {language === 'hi' ? 'उत्पाद / स्टोर' : 'Products / Store'}
           </button>
+
+          {/* Mobile-Only Actions: Theme & Language */}
+          <div className="grid grid-cols-2 gap-2 mt-2 px-2">
+            <button
+              onClick={toggleTheme}
+              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
+            >
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} className="text-yellow-500" />}
+              <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+            </button>
+            <button
+              onClick={toggleLanguage}
+              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
+            >
+              <Globe size={16} />
+              <span className="uppercase">{language === 'hi' ? 'English' : 'हिंदी'}</span>
+            </button>
+          </div>
 
           <div className="border-t border-gray-200 dark:border-gray-800 mt-3 pt-3">
             <button

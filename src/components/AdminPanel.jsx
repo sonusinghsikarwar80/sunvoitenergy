@@ -72,11 +72,11 @@ export default function AdminPanel() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Sidebar Nav */}
-        <div className="lg:col-span-3 space-y-2 bg-white dark:bg-gray-850 p-6 rounded-3xl border shadow-md">
-          <h2 className="font-extrabold text-sm uppercase text-gray-400 tracking-widest mb-4">Admin Suite</h2>
+        <div className="lg:col-span-3 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-2 bg-white dark:bg-gray-850 p-4 sm:p-6 rounded-3xl border shadow-md whitespace-nowrap scrollbar-none">
+          <h2 className="font-extrabold text-sm uppercase text-gray-400 tracking-widest mb-4 hidden lg:block">Admin Suite</h2>
           <button 
             onClick={() => setActiveTab('dashboard')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
               activeTab === 'dashboard'
                 ? 'bg-solar-primary text-white shadow-md'
                 : 'text-solar-textDark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -86,7 +86,7 @@ export default function AdminPanel() {
           </button>
           <button 
             onClick={() => setActiveTab('leads')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
               activeTab === 'leads'
                 ? 'bg-solar-primary text-white shadow-md'
                 : 'text-solar-textDark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -96,7 +96,7 @@ export default function AdminPanel() {
           </button>
           <button 
             onClick={() => setActiveTab('orders')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
               activeTab === 'orders'
                 ? 'bg-solar-primary text-white shadow-md'
                 : 'text-solar-textDark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -106,7 +106,7 @@ export default function AdminPanel() {
           </button>
           <button 
             onClick={() => setActiveTab('catalog')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
               activeTab === 'catalog'
                 ? 'bg-solar-primary text-white shadow-md'
                 : 'text-solar-textDark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -116,7 +116,7 @@ export default function AdminPanel() {
           </button>
           <button 
             onClick={() => setActiveTab('messages')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
               activeTab === 'messages'
                 ? 'bg-solar-primary text-white shadow-md'
                 : 'text-solar-textDark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'

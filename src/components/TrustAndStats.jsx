@@ -74,7 +74,12 @@ export default function TrustAndStats() {
             {badges.map((b, idx) => {
               const Icon = b.icon;
               return (
-                <div key={idx} className="flex flex-col items-center gap-2 p-4 rounded-3xl bg-solar-bgLight/40 dark:bg-gray-800/30 border border-gray-100 dark:border-gray-800 hover:scale-105 transition-all duration-300">
+                <div 
+                  key={idx} 
+                  className={`flex flex-col items-center gap-2 p-4 rounded-3xl bg-solar-bgLight/40 dark:bg-gray-800/30 border border-gray-100 dark:border-gray-800 hover:scale-105 transition-all duration-300 ${
+                    idx === 4 ? 'col-span-2 md:col-span-1' : ''
+                  }`}
+                >
                   <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-solar-primary/10 to-solar-secondary/10 flex items-center justify-center text-solar-primary dark:text-solar-secondary mb-1">
                     <Icon size={24} />
                   </div>

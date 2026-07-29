@@ -246,10 +246,11 @@ export default function Store() {
         {filteredProducts.map((prod) => (
           <div 
             key={prod.id}
-            className="group rounded-3xl overflow-hidden glass border dark:border-gray-800 h-[450px] flex flex-col justify-between shadow-sm hover:shadow-2xl transition-all duration-300 hover-glow"
+            onClick={() => setSelectedProductId(prod.id)}
+            className="group rounded-3xl overflow-hidden glass border dark:border-gray-800 h-[470px] flex flex-col justify-between shadow-sm hover:shadow-2xl transition-all duration-300 hover-glow cursor-pointer"
           >
             {/* Header Image */}
-            <div className="h-56 bg-white dark:bg-gray-900 p-6 flex items-center justify-center relative border-b border-gray-100 dark:border-gray-850">
+            <div className="h-52 bg-white dark:bg-gray-900 p-6 flex items-center justify-center relative border-b border-gray-100 dark:border-gray-850">
               <img src={prod.images[0].startsWith('http') ? prod.images[0] : `${import.meta.env.BASE_URL}${prod.images[0].replace(/^\//, '')}`} alt={prod.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" />
               
               {prod.discountPrice && (
@@ -257,39 +258,17 @@ export default function Store() {
                   Sale
                 </span>
               )}
-
-              {/* Hover actions */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                <button 
-                  onClick={() => setSelectedProductId(prod.id)}
-                  className="p-3 bg-white text-solar-textDark rounded-full hover:bg-solar-primary hover:text-white transition-colors"
-                  title="Quick View"
-                >
-                  <Eye size={18} />
-                </button>
-                <button 
-                  onClick={() => { addToCart(prod, 1); alert('Added to cart!'); }}
-                  className="p-3 bg-white text-solar-textDark rounded-full hover:bg-solar-primary hover:text-white transition-colors"
-                  title="Add to Cart"
-                >
-                  <ShoppingCart size={18} />
-                </button>
-                <button 
-                  onClick={() => toggleCompare(prod)}
-                  className="p-3 bg-white text-solar-textDark rounded-full hover:bg-solar-primary hover:text-white transition-colors"
-                  title="Compare"
-                >
-                  <RefreshCw size={18} />
-                </button>
-              </div>
             </div>
 
             {/* Body Info */}
-            <div className="p-6 flex-1 flex flex-col justify-between items-start text-left">
+            <div className="p-5 flex-1 flex flex-col justify-between items-start text-left">
               <div className="space-y-1.5 w-full">
                 <div className="flex justify-between items-center w-full">
                   <span className="text-[10px] font-bold text-solar-primary uppercase">{prod.category}</span>
-                  <button onClick={() => toggleWishlist(prod.id)} className="text-gray-400 hover:text-red-500">
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); toggleWishlist(prod.id); }} 
+                    className="text-gray-400 hover:text-red-500 p-1"
+                  >
                     <Heart size={16} fill={wishlist.includes(prod.id) ? '#EF4444' : 'none'} className={wishlist.includes(prod.id) ? 'text-red-500' : ''} />
                   </button>
                 </div>
@@ -298,30 +277,51 @@ export default function Store() {
                   {prod.name}
                 </h3>
 
-                <p className="text-[11px] text-gray-400 line-clamp-2 leading-relaxed">
+                <p className="text-[11px] text-gray-450 line-clamp-2 leading-relaxed">
                   {prod.description}
                 </p>
               </div>
 
-              {/* Price & Rating footer */}
-              <div className="flex justify-between items-center w-full pt-4 border-t border-gray-150 dark:border-gray-800/60">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-black text-lg text-solar-primary">
-                    ₹{(prod.discountPrice || prod.price).toLocaleString()}
-                  </span>
-                  {prod.discountPrice && (
-                    <span className="text-xs text-gray-400 line-through">
-                      ₹{prod.price.toLocaleString()}
+              {/* Price & Action footer */}
+              <div className="w-full pt-3 border-t border-gray-150 dark:border-gray-800/60 space-y-3">
+                <div className="flex justify-between items-center w-full">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-black text-base text-solar-primary">
+                      ₹{(prod.discountPrice || prod.price).toLocaleString()}
                     </span>
-                  )}
+                    {prod.discountPrice && (
+                      <span className="text-[10px] text-gray-400 line-through">
+                        ₹{prod.price.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-0.5 text-solar-yellow">
+                    <Star size={11} fill="currentColor" />
+                    <span className="text-xs font-bold text-solar-textDark dark:text-white">{prod.rating}</span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-0.5 text-solar-yellow">
-                  <Star size={12} fill="currentColor" />
-                  <span className="text-xs font-bold text-solar-textDark dark:text-white">{prod.rating}</span>
+                <div className="flex gap-2 w-full">
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); addToCart(prod, 1); alert('Added to cart!'); }}
+                    className="flex-1 py-2.5 bg-solar-primary text-white rounded-xl text-xs font-bold hover:bg-solar-primary/95 transition-all flex items-center justify-center gap-1.5"
+                  >
+                    <ShoppingCart size={14} /> Add to Cart
+                  </button>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); toggleCompare(prod); }}
+                    className={`p-2 rounded-xl border text-xs font-bold transition-all ${
+                      compareList.find(p => p.id === prod.id)
+                        ? 'bg-solar-primary/10 border-solar-primary text-solar-primary'
+                        : 'bg-white dark:bg-gray-850 border-gray-250 dark:border-gray-700 text-gray-500 hover:text-solar-primary'
+                    }`}
+                    title="Compare"
+                  >
+                    <RefreshCw size={14} />
+                  </button>
                 </div>
               </div>
-
             </div>
 
           </div>
