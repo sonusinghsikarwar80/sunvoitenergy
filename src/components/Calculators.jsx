@@ -1022,10 +1022,14 @@ export default function Calculators() {
                   {/* Action CTA Button */}
                   <button 
                     onClick={(e) => { e.stopPropagation(); handleScrollTo('contact'); }}
-                    className="w-full py-3.5 bg-gradient-to-r from-solar-primary to-solar-secondary text-white rounded-xl text-[10px] font-black uppercase tracking-wider hover-glow flex items-center justify-center gap-1.5 transition-all shadow-md"
+                    className={`w-full py-3.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 shadow-sm ${
+                      selectedPlan === plan.id 
+                        ? 'bg-solar-primary text-white hover:bg-solar-primary-dark shadow-md shadow-solar-primary/20 scale-[1.01]'
+                        : 'bg-white/40 dark:bg-gray-800/40 border border-solar-primary/40 text-solar-primary hover:bg-solar-primary hover:text-white'
+                    }`}
                   >
-                    <span>Choose This Plan</span>
-                    <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                    <span>{selectedPlan === plan.id ? '✓ Selected Plan' : 'Choose This Plan'}</span>
+                    <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </div>
               </div>

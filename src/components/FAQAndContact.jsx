@@ -305,7 +305,7 @@ export default function FAQAndContact() {
 
                   <button 
                     type="submit" 
-                    className="w-full py-3.5 bg-gradient-to-r from-solar-primary to-solar-secondary text-white rounded-xl font-bold text-xs uppercase hover-glow glow-btn flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-98 transition-all"
+                    className="w-full py-3.5 bg-solar-primary text-white rounded-xl font-bold text-xs uppercase hover:bg-solar-primary-dark shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2"
                   >
                     <Send size={14} />
                     {t.formBtn}
