@@ -29,6 +29,7 @@ export default function Calculators() {
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [showSubsidyPopup, setShowSubsidyPopup] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('standard');
+  const [pricingToggle, setPricingToggle] = useState('monthly');
 
   // 1. Savings Calculated Values
   const [systemSize, setSystemSize] = useState(11);
@@ -182,32 +183,59 @@ export default function Calculators() {
     {
       id: 'basic',
       name: 'Eco Basic',
-      price: '₹' + Math.round(finalPrice * 0.9).toLocaleString(),
+      capacity: '3 kW Package',
+      icon: '🌞',
+      price: Math.round(finalPrice * 0.9),
+      savingsVal: `Save up to ₹${Math.round(monthlySavings * 12 * 0.85).toLocaleString()}/yr`,
+      payback: 'Recover Investment in 4.5 Years',
+      roiPct: '18% Annual Return (ROI)',
       panels: 'Polycrystalline Modules',
       efficiency: '18.5% Rating',
       warranty: '10 Yr Craftsmanship',
       inverter: 'Standard String Inverter',
-      ideal: 'Entry level budget setup'
+      ideal: 'Entry level budget setup',
+      powerOutput: '3 kW',
+      homesSupported: '1-2',
+      timeline: '3 Days',
+      badge: null
     },
     {
       id: 'standard',
       name: 'SunVoit Standard',
-      price: '₹' + finalPrice.toLocaleString(),
+      capacity: '5 kW Package',
+      icon: '⚡',
+      price: finalPrice,
+      savingsVal: `Save up to ₹${Math.round(monthlySavings * 12).toLocaleString()}/yr`,
+      payback: 'Recover Investment in 3.8 Years',
+      roiPct: '22% Annual Return (ROI)',
       panels: 'Mono-PERC Half Cut Panels',
       efficiency: '21.8% Peak Efficiency',
       warranty: '25 Yr Linear Warranty',
       inverter: 'Huawei Smart String Inverter',
-      ideal: 'Best ROI & peak performance'
+      ideal: 'Best ROI & peak performance',
+      powerOutput: '5 kW',
+      homesSupported: '2-4',
+      timeline: '4 Days',
+      badge: '🔥 RECOMMENDED'
     },
     {
       id: 'premium',
       name: 'Luxe Smart Grid',
-      price: '₹' + Math.round(finalPrice * 1.25).toLocaleString(),
+      capacity: '10 kW Package',
+      icon: '🔋',
+      price: Math.round(finalPrice * 1.25),
+      savingsVal: `Save up to ₹${Math.round(monthlySavings * 12 * 1.3).toLocaleString()}/yr`,
+      payback: 'Recover Investment in 3.2 Years',
+      roiPct: '25% Annual Return (ROI)',
       panels: 'Bifacial Glass-Glass Panels',
       efficiency: '22.5% Maximum Yield',
       warranty: '30 Yr Performance Warranty',
       inverter: 'Smart Hybrid Inverter + App',
-      ideal: 'Battery ready luxury setup'
+      ideal: 'Battery ready luxury setup',
+      powerOutput: '10 kW',
+      homesSupported: '4-6',
+      timeline: '5 Days',
+      badge: 'BEST VALUE'
     }
   ];
 
@@ -876,44 +904,92 @@ export default function Calculators() {
         </div>
 
         {/* ══════════ PLAN COMPARISON SECTION ══════════ */}
-        <div className="space-y-8">
-          <div className="text-center space-y-2">
+        <div className="space-y-8 mt-12 border-t border-gray-150 dark:border-gray-800/60 pt-16">
+          <div className="text-center space-y-3 max-w-xl mx-auto">
             <span className="text-xs font-black tracking-[0.25em] text-solar-primary uppercase block">Compare Packages</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-solar-textDark dark:text-white uppercase tracking-tight" style={{ letterSpacing: '-0.03em' }}>
-              Choose Your Solar Configuration
+            <h3 className="text-2xl sm:text-4xl font-black text-solar-textDark dark:text-white uppercase tracking-tight" style={{ letterSpacing: '-0.03em' }}>
+              Choose the Perfect Solar Package
             </h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
+              Compare our residential solar packages and choose the best solution based on your energy usage and budget.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Pricing metric view toggle */}
+          <div className="flex justify-center gap-2 mb-8 bg-gray-150 dark:bg-gray-800/60 p-1 rounded-full max-w-xs mx-auto border border-gray-200/20 shadow-inner">
+            {['monthly', 'lifetime', 'roi'].map((mode) => (
+              <button
+                key={mode}
+                onClick={() => setPricingToggle(mode)}
+                className={`flex-1 py-2 px-3 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${
+                  pricingToggle === mode
+                    ? 'bg-solar-primary text-white shadow-sm'
+                    : 'text-gray-450 hover:text-solar-primary dark:text-gray-300'
+                }`}
+              >
+                {mode === 'monthly' ? 'Monthly' : mode === 'lifetime' ? 'Lifetime' : 'ROI'}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {plans.map((plan) => (
               <div 
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`p-6 rounded-[24px] border bg-white/70 dark:bg-gray-850 flex flex-col justify-between space-y-5 cursor-pointer relative transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
+                className={`p-6 rounded-[28px] border bg-white/70 dark:bg-gray-850/80 flex flex-col justify-between space-y-6 cursor-pointer relative transition-all duration-400 hover:-translate-y-3 hover:shadow-2xl ${
                   selectedPlan === plan.id 
-                    ? 'border-solar-primary ring-2 ring-solar-primary/20 shadow-xl scale-[1.02]'
-                    : 'border-gray-250 dark:border-gray-800 hover:border-solar-primary/50'
+                    ? 'border-solar-primary ring-2 ring-solar-primary/20 shadow-xl scale-[1.01] bg-gradient-to-b from-white to-solar-primary/[0.02] dark:to-solar-primary/[0.01]'
+                    : 'border-gray-250/70 dark:border-gray-800 hover:border-solar-primary/50'
                 }`}
+                style={{ border: selectedPlan === plan.id ? '2px solid #2E7D32' : '1px solid rgba(46,125,50,0.15)' }}
               >
+                {/* Active Recommended Badge */}
+                {plan.badge && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-solar-primary text-white font-black text-[9px] px-3.5 py-1 rounded-full uppercase tracking-widest shadow-md">
+                    {plan.badge}
+                  </span>
+                )}
+
                 {/* Active checkmark */}
                 {selectedPlan === plan.id && (
-                  <div className="absolute top-4 right-4 bg-solar-primary text-white p-1 rounded-full">
-                    <Check size={14} />
+                  <div className="absolute top-4 right-4 bg-solar-primary text-white p-1 rounded-full shadow">
+                    <Check size={12} />
                   </div>
                 )}
                 
-                <div className="text-left space-y-3.5">
+                <div className="text-left space-y-4">
+                  {/* Icon & Tiny labels */}
+                  <div className="flex justify-between items-start">
+                    <div className="w-12 h-12 rounded-2xl bg-solar-primary/10 flex items-center justify-center text-2xl shadow-inner">
+                      {plan.icon}
+                    </div>
+                    <span className="text-[8px] font-black uppercase tracking-wider text-gray-400 border px-2 py-0.5 rounded-md dark:border-gray-800">{plan.capacity}</span>
+                  </div>
+
                   <div>
                     <span className="text-[9px] font-black text-solar-primary uppercase tracking-wider block">Plan Option</span>
-                    <h4 className="font-black text-lg text-solar-textDark dark:text-white mt-0.5 uppercase">{plan.name}</h4>
+                    <h4 className="font-black text-lg text-solar-textDark dark:text-white mt-0.5 uppercase tracking-tight">{plan.name}</h4>
                   </div>
-                  <div className="py-2.5 border-y border-gray-100 dark:border-gray-800">
-                    <span className="text-[9px] text-gray-400 block uppercase font-bold tracking-wider">Estimated Package Cost</span>
-                    <span className="text-2xl font-black text-solar-textDark dark:text-white font-mono">{plan.price}</span>
+
+                  {/* Pricing Layout */}
+                  <div className="py-3 border-y border-gray-150 dark:border-gray-800/60 space-y-1">
+                    <span className="text-[8px] text-gray-400 uppercase font-black tracking-wider block">Starting From</span>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-2xl font-black text-solar-textDark dark:text-white font-mono">₹{plan.price.toLocaleString()}</span>
+                      <span className="text-[9px] text-gray-450 dark:text-gray-500 font-semibold">*Incl. Installation</span>
+                    </div>
+                    {/* Dynamic savings text */}
+                    <span className="text-[10px] font-bold text-solar-secondary block">
+                      {pricingToggle === 'monthly' ? plan.savingsVal : pricingToggle === 'lifetime' ? `Est. Lifetime Save: ₹${Math.round(plan.price * 2.8).toLocaleString()}` : plan.payback}
+                    </span>
+                    <span className="text-[9px] text-gray-400 font-semibold block">
+                      {pricingToggle === 'roi' ? plan.roiPct : `Or EMI from ₹${Math.round(plan.price / 84).toLocaleString()}/month*`}
+                    </span>
                   </div>
                   
-                  {/* Features list */}
-                  <div className="space-y-2 text-xs font-bold text-gray-600 dark:text-gray-300 pt-2">
+                  {/* Features list checklist */}
+                  <div className="space-y-2 text-xs font-bold text-gray-600 dark:text-gray-300 pt-1">
                     <div className="flex items-center gap-2">
                       <Check size={13} className="text-solar-primary flex-shrink-0" />
                       <span>{plan.panels}</span>
@@ -924,21 +1000,76 @@ export default function Calculators() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Check size={13} className="text-solar-primary flex-shrink-0" />
-                      <span>{plan.warranty}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check size={13} className="text-solar-primary flex-shrink-0" />
                       <span>{plan.inverter}</span>
+                    </div>
+                    {/* Small badge tags */}
+                    <div className="flex gap-2 pt-1">
+                      <span className="text-[8px] font-black uppercase tracking-wider px-2 py-0.5 bg-solar-primary/10 text-solar-primary rounded-md">{plan.warranty.split(' ')[0]} YR Warranty</span>
+                      <span className="text-[8px] font-black uppercase tracking-wider px-2 py-0.5 bg-solar-secondary/10 text-solar-secondary rounded-md">MNRE Approved</span>
+                    </div>
+                    <div className="text-[9px] text-gray-400 font-bold flex items-center gap-1.5 pt-1.5">
+                      <span>⚡ Installation Timeline:</span>
+                      <span className="text-solar-primary font-black uppercase">{plan.timeline}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="text-left pt-2 border-t border-gray-100 dark:border-gray-800">
-                  <span className="text-[9px] text-gray-400 block font-bold uppercase tracking-wider">Ideal For</span>
-                  <p className="text-xs text-gray-500 font-bold mt-0.5">{plan.ideal}</p>
+                <div className="space-y-4">
+                  <div className="text-left pt-2.5 border-t border-gray-150 dark:border-gray-800">
+                    <span className="text-[8px] text-gray-400 block font-bold uppercase tracking-wider">Ideal For</span>
+                    <p className="text-[11px] text-gray-500 font-bold mt-0.5">{plan.ideal}</p>
+                  </div>
+                  {/* Action CTA Button */}
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); handleScrollTo('contact'); }}
+                    className="w-full py-3.5 bg-gradient-to-r from-solar-primary to-solar-secondary text-white rounded-xl text-[10px] font-black uppercase tracking-wider hover-glow flex items-center justify-center gap-1.5 transition-all shadow-md"
+                  >
+                    <span>Choose This Plan</span>
+                    <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Comparison Row Table */}
+          <div className="mt-8 overflow-hidden rounded-2xl border border-gray-150 dark:border-gray-800 bg-white/50 dark:bg-gray-900/40 backdrop-blur-md text-xs">
+            <div className="grid grid-cols-4 p-3 bg-solar-primary/5 dark:bg-solar-primary/10 border-b border-gray-150 dark:border-gray-800 font-extrabold text-[10px] uppercase text-gray-400 tracking-wider">
+              <span>Specification</span>
+              <span className="text-center">Eco Basic</span>
+              <span className="text-center">Standard</span>
+              <span className="text-center">Luxe Smart</span>
+            </div>
+            <div className="grid grid-cols-4 p-3.5 border-b border-gray-150 dark:border-gray-800/40">
+              <span className="font-bold text-gray-500 dark:text-gray-400">Power Output</span>
+              <span className="text-center font-bold text-solar-textDark dark:text-white">3 kW</span>
+              <span className="text-center font-bold text-solar-textDark dark:text-white">5 kW</span>
+              <span className="text-center font-bold text-solar-textDark dark:text-white">8 kW</span>
+            </div>
+            <div className="grid grid-cols-4 p-3.5">
+              <span className="font-bold text-gray-500 dark:text-gray-400">Homes Supported</span>
+              <span className="text-center font-bold text-solar-textDark dark:text-white">1-2</span>
+              <span className="text-center font-bold text-solar-textDark dark:text-white">2-4</span>
+              <span className="text-center font-bold text-solar-textDark dark:text-white">4-6</span>
+            </div>
+          </div>
+
+          {/* ROI Savings Calculator Link */}
+          <div className="text-center pt-2">
+            <button 
+              onClick={() => handleScrollTo('calculator')}
+              className="text-[10px] font-black text-solar-primary hover:underline uppercase tracking-widest flex items-center gap-1.5 mx-auto"
+            >
+              Not sure? Calculate Your Savings →
+            </button>
+          </div>
+
+          {/* Trust Footer */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-4 border-t border-gray-150 dark:border-gray-800/60 mt-12 text-[10px] font-black uppercase text-gray-400 tracking-widest">
+            <span>✔ 5000+ Installations</span>
+            <span>✔ 25 Years Warranty</span>
+            <span>✔ MNRE Approved</span>
+            <span>✔ Free Site Survey</span>
           </div>
         </div>
 
