@@ -4,7 +4,7 @@ import { stateSubsidies } from '../data/mockData';
 import {
   Calculator, ShieldAlert, Sparkles, TrendingUp, Leaf, Coins, Check,
   Info, Download, Mail, Phone, Sun, MapPin, Upload, MessageSquare, AlertCircle,
-  X, Star, Zap, CheckCircle2, RotateCw, FileText, BarChart3, HelpCircle, Eye, ShieldCheck, TreePine, Car, Home
+  X, Star, Zap, CheckCircle2, RotateCw, FileText, BarChart3, HelpCircle, Eye, ShieldCheck, TreePine, Car, Home, ArrowRight
 } from 'lucide-react';
 
 export default function Calculators() {
