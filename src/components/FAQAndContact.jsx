@@ -105,26 +105,6 @@ export default function FAQAndContact() {
               {t.faqDesc}
             </p>
           </div>
-
-          {/* Impact Statistics Counter Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-150 dark:border-gray-800 shadow-sm max-w-3xl mx-auto">
-            <div className="text-center space-y-1">
-              <span className="text-xl sm:text-2xl font-black text-solar-primary block font-mono">⚡ 5000+</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold">Installations</span>
-            </div>
-            <div className="text-center space-y-1">
-              <span className="text-xl sm:text-2xl font-black text-solar-primary block font-mono">⭐ 4.9</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold">Customer Rating</span>
-            </div>
-            <div className="text-center space-y-1">
-              <span className="text-xl sm:text-2xl font-black text-solar-primary block font-mono">🏆 10+</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold">Years Legacy</span>
-            </div>
-            <div className="text-center space-y-1">
-              <span className="text-xl sm:text-2xl font-black text-solar-primary block font-mono">🌞 50 MW+</span>
-              <span className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold">Solar Capacity</span>
-            </div>
-          </div>
         </div>
 
         {/* ══════════ COLUMN GRID LAYOUT ══════════ */}
