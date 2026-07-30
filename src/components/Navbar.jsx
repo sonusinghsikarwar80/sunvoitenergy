@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import {
-  Sun, Moon, Search, ShoppingBag, Globe,
+  Sun, Moon, Search, Globe,
   Phone, X, Heart, RefreshCw, ChevronDown, Menu
 } from 'lucide-react';
 
@@ -158,14 +158,6 @@ export default function Navbar() {
             <RefreshCw size={19} className="text-solar-primary" />
             {compareList.length > 0 && (
               <span className="absolute -top-1 -right-1 bg-solar-primary text-white rounded-full text-[9px] w-4 h-4 flex items-center justify-center font-bold">{compareList.length}</span>
-            )}
-          </button>
-
-          {/* Cart */}
-          <button onClick={() => go('/cart')} className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
-            <ShoppingBag size={19} className="text-solar-textDark dark:text-gray-200" />
-            {totalCartItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-solar-secondary text-white rounded-full text-[9px] w-4 h-4 flex items-center justify-center font-bold">{totalCartItems}</span>
             )}
           </button>
 
