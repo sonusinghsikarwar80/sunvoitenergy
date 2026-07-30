@@ -139,12 +139,6 @@ export default function Navbar() {
               : <Sun size={19} className="text-yellow-400" />}
           </button>
 
-          {/* Language (Desktop only, hidden < sm) */}
-          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:flex items-center gap-1">
-            <Globe size={17} className="text-solar-textDark dark:text-gray-200" />
-            <span className="uppercase text-xs font-semibold text-solar-textDark dark:text-gray-200">{language}</span>
-          </button>
-
           {/* Wishlist */}
           <button onClick={() => go('/store')} className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden md:block">
             <Heart size={19} className="text-red-500" />
@@ -161,12 +155,10 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Cart */}
-          <button onClick={() => go('/cart')} className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
-            <ShoppingBag size={19} className="text-solar-textDark dark:text-gray-200" />
-            {totalCartItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-solar-secondary text-white rounded-full text-[9px] w-4 h-4 flex items-center justify-center font-bold">{totalCartItems}</span>
-            )}
+          {/* Language Toggle (Always Visible, Replacing Cart) */}
+          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center gap-1">
+            <Globe size={18} className="text-solar-textDark dark:text-gray-200 animate-pulse-slow" />
+            <span className="uppercase text-xs font-bold text-solar-textDark dark:text-gray-200">{language}</span>
           </button>
 
           {/* WhatsApp */}
