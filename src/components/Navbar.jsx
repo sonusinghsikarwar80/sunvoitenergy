@@ -68,7 +68,7 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'glass-premium py-3 shadow-md' : 'bg-transparent py-4'
+      scrolled || mobileOpen ? 'bg-white dark:bg-gray-950 py-3 shadow-md border-b border-gray-100 dark:border-gray-800' : 'bg-transparent py-4'
     }`}>
       <div className="max-w-7xl mx-auto px-5 flex items-center justify-between gap-4">
 
@@ -222,7 +222,7 @@ export default function Navbar() {
 
       {/* ── Mobile Drawer Menu ── */}
       {mobileOpen && (
-        <div className="xl:hidden absolute top-full left-0 w-full glass-premium shadow-2xl border-t dark:border-gray-800 py-6 px-6 flex flex-col gap-1 animate-slide-down max-h-[85vh] overflow-y-auto">
+        <div className="xl:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-950 shadow-2xl border-t border-gray-100 dark:border-gray-800 py-6 px-6 flex flex-col gap-1 animate-slide-down max-h-[85vh] overflow-y-auto">
           {navLinks.map((link) => (
             <button
               key={link.path}
@@ -246,6 +246,24 @@ export default function Navbar() {
           >
             {language === 'hi' ? 'उत्पाद / स्टोर' : 'Products / Store'}
           </button>
+
+          {/* Mobile-Only Actions: Theme & Language */}
+          <div className="grid grid-cols-2 gap-2 mt-2 px-2">
+            <button
+              onClick={toggleTheme}
+              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
+            >
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} className="text-yellow-500" />}
+              <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+            </button>
+            <button
+              onClick={toggleLanguage}
+              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
+            >
+              <Globe size={16} />
+              <span className="uppercase">{language === 'hi' ? 'English' : 'हिंदी'}</span>
+            </button>
+          </div>
 
           <div className="border-t border-gray-200 dark:border-gray-800 mt-3 pt-3">
             <button
