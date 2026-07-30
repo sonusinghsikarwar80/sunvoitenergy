@@ -247,24 +247,6 @@ export default function Navbar() {
             {language === 'hi' ? 'उत्पाद / स्टोर' : 'Products / Store'}
           </button>
 
-          {/* Mobile-Only Actions: Theme & Language */}
-          <div className="grid grid-cols-2 gap-2 mt-2 px-2">
-            <button
-              onClick={toggleTheme}
-              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
-            >
-              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} className="text-yellow-500" />}
-              <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-            </button>
-            <button
-              onClick={toggleLanguage}
-              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
-            >
-              <Globe size={16} />
-              <span className="uppercase">{language === 'hi' ? 'English' : 'हिंदी'}</span>
-            </button>
-          </div>
-
           <div className="border-t border-gray-200 dark:border-gray-800 mt-3 pt-3">
             <button
               onClick={() => go('/calculator')}
