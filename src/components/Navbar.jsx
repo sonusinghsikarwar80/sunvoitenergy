@@ -132,11 +132,17 @@ export default function Navbar() {
             <Search size={19} className="text-solar-textDark dark:text-gray-200" />
           </button>
 
-          {/* Theme Toggle (Always Visible) */}
-          <button onClick={toggleTheme} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
+          {/* Theme Toggle (Desktop only, hidden < sm) */}
+          <button onClick={toggleTheme} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:block">
             {theme === 'light'
               ? <Moon size={19} className="text-solar-textDark" />
               : <Sun size={19} className="text-yellow-400" />}
+          </button>
+
+          {/* Language (Desktop only, hidden < sm) */}
+          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:flex items-center gap-1">
+            <Globe size={17} className="text-solar-textDark dark:text-gray-200" />
+            <span className="uppercase text-xs font-semibold text-solar-textDark dark:text-gray-200">{language}</span>
           </button>
 
           {/* Wishlist */}
@@ -155,10 +161,12 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Language Toggle (Always Visible, Replacing Cart) */}
-          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center gap-1">
-            <Globe size={18} className="text-solar-textDark dark:text-gray-200 animate-pulse-slow" />
-            <span className="uppercase text-xs font-bold text-solar-textDark dark:text-gray-200">{language}</span>
+          {/* Cart */}
+          <button onClick={() => go('/cart')} className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
+            <ShoppingBag size={19} className="text-solar-textDark dark:text-gray-200" />
+            {totalCartItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-solar-secondary text-white rounded-full text-[9px] w-4 h-4 flex items-center justify-center font-bold">{totalCartItems}</span>
+            )}
           </button>
 
           {/* WhatsApp */}
@@ -239,6 +247,23 @@ export default function Navbar() {
             {language === 'hi' ? 'उत्पाद / स्टोर' : 'Products / Store'}
           </button>
 
+          {/* Mobile-Only Actions: Theme & Language */}
+          <div className="grid grid-cols-2 gap-2 mt-2 px-2">
+            <button
+              onClick={toggleTheme}
+              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
+            >
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} className="text-yellow-500" />}
+              <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+            </button>
+            <button
+              onClick={toggleLanguage}
+              className="py-3 px-4 rounded-xl text-sm font-medium border flex items-center justify-center gap-2 bg-white/50 dark:bg-gray-800/55 text-solar-textDark dark:text-gray-200"
+            >
+              <Globe size={16} />
+              <span className="uppercase">{language === 'hi' ? 'English' : 'हिंदी'}</span>
+            </button>
+          </div>
 
           <div className="border-t border-gray-200 dark:border-gray-800 mt-3 pt-3">
             <button
