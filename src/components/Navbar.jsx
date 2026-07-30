@@ -139,10 +139,10 @@ export default function Navbar() {
               : <Sun size={19} className="text-yellow-400" />}
           </button>
 
-          {/* Language (Desktop only, hidden < sm) */}
-          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors hidden sm:flex items-center gap-1">
-            <Globe size={17} className="text-solar-textDark dark:text-gray-200" />
-            <span className="uppercase text-xs font-semibold text-solar-textDark dark:text-gray-200">{language}</span>
+          {/* Language Toggle (Always Visible, Replacing Cart) */}
+          <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center gap-1">
+            <Globe size={18} className="text-solar-textDark dark:text-gray-200" />
+            <span className="uppercase text-xs font-bold text-solar-textDark dark:text-gray-200">{language}</span>
           </button>
 
           {/* Wishlist */}
